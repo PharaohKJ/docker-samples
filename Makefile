@@ -1,3 +1,5 @@
+DOCKER_IP=$(shell boot2docker ip 2>/dev/null)
+FORWARD=5000
 
 ## help
 help:
@@ -8,5 +10,10 @@ run:
 	bundle exec puma hello.ru
 
 ## echo
-echo:
-	curl -d 'data=xxx' http://localhost:9292/echo
+test:
+	curl http://$(DOCKER_IP):$(FORWARD)/
+	@echo
+	curl http://$(DOCKER_IP):$(FORWARD)/ping
+	@echo
+	curl -X POST -d 'data=xxx' http://$(DOCKER_IP):$(FORWARD)/echo
+	@echo

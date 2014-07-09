@@ -1,0 +1,16 @@
+grape + puma で web api 作成
+
+# puma
+
+## reference
+ + https://github.com/puma/puma
+
+# grape
+
+## reference
+ + http://intridea.github.io/grape/docs/index.html
+ + https://github.com/intridea/grape#mounting を参照してマウントruファイル作成
+
+# 参考にしたURL
+ + http://qiita.com/anoworl/items/756f01cc3d188ebad139
+ + http://qiita.com/yimajo/items/d4f484deda7cb9f61a49
