@@ -5,7 +5,7 @@ RUN cd /root/
 RUN gem install --no-ri --no-rdoc puma grape
 RUN ip a
 ADD Gemfile /root/Gemfile
-ADD hello.rb /root/proxy.rb
-ADD hello.ru /root/proxy.ru
+ADD proxy.rb /root/proxy.rb
+ADD proxy.ru /root/proxy.ru
 CMD /usr/local/bin/puma /root/proxy.ru
 EXPOSE 80 9292
