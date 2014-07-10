@@ -2,6 +2,7 @@ require 'rack'
 require 'grape'
 require 'faraday'
 require 'faraday_middleware'
+require 'docker'
 
 module TestApp
   # Simple API Implement
@@ -39,6 +40,14 @@ module TestApp
       {
         pong: Time.now,
         myname: Socket.gethostname
+      }
+    end
+
+    get '/dockerinfo' do
+      Docker.url = ENV['DOCKER_HOST']
+      # TODO: create
+      {
+        containers:  Docker::Container.all
       }
     end
 

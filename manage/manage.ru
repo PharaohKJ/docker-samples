@@ -1,2 +1,2 @@
-require File.expand_path(File.dirname(__FILE__)) + '/proxy.rb'
+require File.expand_path(File.dirname(__FILE__)) + '/manage.rb'
 run TestApp::API

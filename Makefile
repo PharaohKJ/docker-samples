@@ -1,4 +1,5 @@
 DOCKER_IP=$(shell boot2docker ip 2>/dev/null)
+DOCKER_ENTRY="tcp://$(DOCKER_IP):2375"
 FORWARD=5000
 FORWARD2=5100
 PUMA_PORT=9292
@@ -11,24 +12,35 @@ help:
 
 ## env
 env:
-	@echo export DOCKER_HOST=tcp://$(DOCKER_IP):2375
+	@echo export DOCKER_HOST=$(DOCKER_IP)
 
 ## elocal
 elocal:
 	cd echo ; bundle exec puma hello.ru
 
-## elocal
+## plocal
 plocal:
 	cd proxy ; bundle exec puma proxy.ru
+
+## mlocal
+mlocal:
+	cd manage ; bundle exec puma manage.ru
 
 ## port
 port:
 	@boot2docker ip 2>/dev/null ; echo
 
-
 ## ebuild
 ebuild:
 	docker build -t kato/echo echo/
+
+## pbuild
+pbuild:
+	docker build -t kato/proxy proxy/
+
+## mbuild
+mbuild:
+	docker build -t kato/manage manage/
 
 ## clean
 clean: rmfall
@@ -38,11 +50,6 @@ ebr: ebuild erun
 
 ## pbr pbuild->brun
 pbr: pbuild prun
-
-
-## pbuild
-pbuild:
-	docker build -t kato/proxy proxy/
 
 ## erun
 erun:
@@ -59,6 +66,10 @@ prun:
 ## prun_link
 prun_link:
 	docker run -d --name='kato_proxy' --link  kato_echo_no_proxy:$(ENV_NAME)  -p $(FORWARD2):$(PUMA_PORT) kato/proxy
+
+## mrun
+mrun:
+	docker run -d --name='kato_manage' -e "DOCKER_HOST=$(DOCKER_ENTRY)" -p $(FORWARD2):$(PUMA_PORT) kato/manage
 
 ## rmall
 rmall:
