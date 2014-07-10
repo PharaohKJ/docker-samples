@@ -32,5 +32,12 @@ module TestApp
         platform: RUBY_PLATFORM
       }
     end
+
+    get '/ping2' do
+      {
+        pong: Time.now,
+        myname: Socket.gethostname
+      }
+    end
   end
 end

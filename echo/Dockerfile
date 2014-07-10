@@ -1,6 +1,6 @@
 FROM base
 MAINTAINER MASAYUKI KATOH kato@clwit.co.jp
-RUN apt-get install ruby ruby-dev make libssl-dev -y
+RUN apt-get install ruby ruby-dev make libssl-dev wget -y
 RUN cd /root/
 RUN gem install --no-ri --no-rdoc puma grape
 RUN ip a
