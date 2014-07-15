@@ -4,6 +4,7 @@ FORWARD=5000
 FORWARD2=5100
 PUMA_PORT=9292
 ENV_NAME=echoenv
+RANDOM=$(shell openssl rand -base64 8)
 
 
 ## help
