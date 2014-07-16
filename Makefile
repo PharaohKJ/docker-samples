@@ -13,7 +13,7 @@ help:
 
 ## env
 env:
-	@echo export DOCKER_HOST=$(DOCKER_IP)
+	@echo export DOCKER_HOST=$(DOCKER_ENTRY)
 
 ## elocal
 elocal:
