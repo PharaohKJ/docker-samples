@@ -36,6 +36,7 @@ module TestApp
     get '/ping2' do
       {
         pong: Time.now,
+        env: ENV,
         myname: Socket.gethostname
       }
     end

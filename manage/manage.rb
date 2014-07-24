@@ -23,6 +23,9 @@ module TestApp
         response.body
       end
 
+      if @v == 3
+        @v = "1"
+      end
       def find_waiting
         Docker::Container.all(all: true).delete_if do | i |
           i.info['Image'] !~ /#{WEBAPI_IMG_NAME}/ ||
@@ -84,7 +87,10 @@ module TestApp
       Docker.url = ENV['DOCKER_HOST']
       docks = find_waiting
       if docks.length == 0
-        d = Docker::Container.create('Image' => 'kato/echo')
+        d = Docker::Container.create(
+          'Image' => 'kato/echo',
+          'Env'   => 'ENV_TARGET=ENVTEST'
+          )
       else
         # restart
         d = docks.first

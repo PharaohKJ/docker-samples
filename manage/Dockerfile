@@ -1,5 +1,7 @@
-FROM base
+#FROM base
+FROM ubuntu
 MAINTAINER MASAYUKI KATOH kato@clwit.co.jp
+RUN apt-get update -y
 RUN apt-get install ruby ruby-dev make libssl-dev wget -y
 RUN cd /root/
 RUN gem install --no-ri --no-rdoc puma grape faraday faraday_middleware docker-api
